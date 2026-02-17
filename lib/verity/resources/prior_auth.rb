@@ -20,6 +20,20 @@ module Verity
 
         @client.request(:post, '/prior-auth/check', body: body, headers: headers)
       end
+
+      def research(procedure_codes:, payer: nil, state: nil, diagnosis_codes: nil, clinical_context: nil, sync: false)
+        body = { procedure_codes: procedure_codes, sync: sync }
+        body[:payer] = payer if payer
+        body[:state] = state if state
+        body[:diagnosis_codes] = diagnosis_codes if diagnosis_codes
+        body[:clinical_context] = clinical_context if clinical_context
+
+        @client.request(:post, '/prior-auth/research', body: body)
+      end
+
+      def get_research(research_id)
+        @client.request(:get, "/prior-auth/research/#{research_id}")
+      end
     end
   end
 end

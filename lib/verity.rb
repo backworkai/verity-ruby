@@ -11,6 +11,7 @@ require_relative 'verity/resources/codes'
 require_relative 'verity/resources/policies'
 require_relative 'verity/resources/coverage'
 require_relative 'verity/resources/prior_auth'
+require_relative 'verity/resources/spending'
 
 module Verity
   class Error < StandardError; end

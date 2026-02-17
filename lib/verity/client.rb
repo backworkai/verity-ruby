@@ -31,6 +31,10 @@ module Verity
       @prior_auth ||= Resources::PriorAuth.new(self)
     end
 
+    def spending
+      @spending ||= Resources::Spending.new(self)
+    end
+
     def health
       request(:get, '/health')
     end
