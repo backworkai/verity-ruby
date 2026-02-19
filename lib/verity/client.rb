@@ -35,6 +35,10 @@ module Verity
       @spending ||= Resources::Spending.new(self)
     end
 
+    def webhooks
+      @webhooks ||= Resources::Webhooks.new(self)
+    end
+
     def health
       request(:get, '/health')
     end

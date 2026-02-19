@@ -21,6 +21,10 @@ module Verity
       def jurisdictions
         @client.request(:get, '/jurisdictions')
       end
+
+      def evaluate(policy_id:, parameters:)
+        @client.request(:post, '/coverage/evaluate', body: { policy_id: policy_id, parameters: parameters })
+      end
     end
   end
 end

@@ -7,7 +7,7 @@ module Verity
         @client = client
       end
 
-      def list(q: nil, mode: 'keyword', policy_type: nil, jurisdiction: nil, payer: nil, status: 'active', cursor: nil, limit: 50, include: nil)
+      def list(q: nil, mode: 'keyword', policy_type: nil, jurisdiction: nil, payer: nil, status: 'active', icd10: nil, format: nil, cursor: nil, limit: 50, include: nil)
         params = {}
         params[:q] = q if q
         params[:mode] = mode if mode
@@ -15,6 +15,8 @@ module Verity
         params[:jurisdiction] = jurisdiction if jurisdiction
         params[:payer] = payer if payer
         params[:status] = status if status
+        params[:icd10] = icd10 if icd10
+        params[:format] = format if format
         params[:cursor] = cursor if cursor
         params[:limit] = limit if limit
         params[:include] = Array(include).join(',') if include

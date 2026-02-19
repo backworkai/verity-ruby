@@ -16,6 +16,13 @@ module Verity
 
         @client.request(:get, '/codes/lookup', params: params)
       end
+
+      def batch(codes, code_system: nil, include: nil)
+        body = { codes: codes }
+        body[:code_system] = code_system if code_system
+        body[:include] = include.join(',') if include
+        @client.request(:post, '/codes/batch', body: body)
+      end
     end
   end
 end
