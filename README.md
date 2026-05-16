@@ -200,6 +200,23 @@ data['matched_policies']&.each do |policy|
 end
 ```
 
+### Claim Validation
+
+Validate coverage and denial risk before submission:
+
+```ruby
+result = client.claims.validate(
+  procedure_codes: ['99213'],
+  diagnosis_codes: ['E11.9'],
+  payer: 'Medicare',
+  state: 'TX'
+)
+
+data = result['data']
+puts "Coverage: #{data['coverage_status']}"
+puts "Denial risk: #{data['denial_risk']}"
+```
+
 ### Coverage Criteria Search
 
 Search through coverage criteria:
@@ -232,6 +249,22 @@ result['data'].each do |jurisdiction|
   puts "#{jurisdiction['jurisdiction_code']}: #{jurisdiction['mac_name']}"
   puts "  States: #{jurisdiction['states']&.join(', ')}"
   puts "  Website: #{jurisdiction['website_url']}"
+end
+```
+
+### Compliance and Drug Formulary
+
+Review policy changes and search pharmacy-benefit formulary evidence:
+
+```ruby
+changes = client.compliance.unreviewed(limit: 10)
+stats = client.compliance.stats
+
+formulary = client.drugs.formulary('ozempic', payer: 'all', limit: 5)
+
+puts "Unreviewed changes: #{stats.dig('data', 'unreviewed_count')}"
+formulary['data'].each do |item|
+  puts "#{item['drug_name']}: #{item['coverage_status']}"
 end
 ```
 
@@ -323,7 +356,7 @@ puts "Database: #{health.dig('data', 'checks', 'database', 'status')}"
 ## Support
 
 - **Documentation**: [Verity API Docs](https://verity.backworkai.com/docs)
-- **Issues**: [GitHub Issues](https://github.com/Tylerbryy/verity-ruby/issues)
+- **Issues**: [GitHub Issues](https://github.com/backworkai/verity-ruby/issues)
 - **Email**: support@verity.backworkai.com
 
 ## License

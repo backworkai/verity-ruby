@@ -39,6 +39,18 @@ module Verity
       @webhooks ||= Resources::Webhooks.new(self)
     end
 
+    def claims
+      @claims ||= Resources::Claims.new(self)
+    end
+
+    def compliance
+      @compliance ||= Resources::Compliance.new(self)
+    end
+
+    def drugs
+      @drugs ||= Resources::Drugs.new(self)
+    end
+
     def health
       request(:get, '/health')
     end
@@ -46,7 +58,7 @@ module Verity
     # @private
     def request(method, path, params: nil, body: nil, headers: {})
       response = connection.send(method) do |req|
-        req.url path
+        req.url path.sub(%r{\A/}, '')
         req.params = params if params
         req.body = body.to_json if body
         req.headers = default_headers.merge(headers)
