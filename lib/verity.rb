@@ -13,6 +13,9 @@ require_relative 'verity/resources/coverage'
 require_relative 'verity/resources/prior_auth'
 require_relative 'verity/resources/spending'
 require_relative 'verity/resources/webhooks'
+require_relative 'verity/resources/claims'
+require_relative 'verity/resources/compliance'
+require_relative 'verity/resources/drugs'
 
 module Verity
   class Error < StandardError; end

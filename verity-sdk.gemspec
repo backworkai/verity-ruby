@@ -6,13 +6,12 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Ruby SDK for the Verity API"
   spec.description   = "Ruby client library for the Verity API - Medicare coverage policies, prior authorization requirements, and medical code lookups"
-  spec.homepage      = "https://github.com/Tylerbryy/verity-ruby"
+  spec.homepage      = "https://github.com/backworkai/verity-ruby"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/Tylerbryy/verity-ruby"
-  spec.metadata["changelog_uri"] = "https://github.com/Tylerbryy/verity-ruby/blob/master/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/backworkai/verity-ruby"
 
   spec.files = Dir["lib/**/*", "README.md", "LICENSE"]
   spec.require_paths = ["lib"]
