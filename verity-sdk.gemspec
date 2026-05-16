@@ -12,7 +12,6 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/backworkai/verity-ruby"
-  spec.metadata["changelog_uri"] = "https://github.com/backworkai/verity-ruby/blob/master/CHANGELOG.md"
 
   spec.files = Dir["lib/**/*", "README.md", "LICENSE"]
   spec.require_paths = ["lib"]
