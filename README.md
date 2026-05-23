@@ -4,10 +4,10 @@ Official Ruby client for the [Verity API](https://verity.backworkai.com): Medica
 
 ## Installation
 
-Add the SDK to your Gemfile:
+Install from GitHub until the first RubyGems release is indexed:
 
 ```ruby
-gem 'verity-sdk'
+gem 'verity-sdk', git: 'https://github.com/backworkai/verity-ruby.git'
 ```
 
 Then install dependencies:
@@ -16,7 +16,7 @@ Then install dependencies:
 bundle install
 ```
 
-Or install it directly:
+After the first RubyGems release, install it directly:
 
 ```bash
 gem install verity-sdk
@@ -150,7 +150,18 @@ client = Verity::Client.new(
 ```bash
 bundle install
 ruby -c lib/verity.rb
+gem build verity-sdk.gemspec
+bundle exec rake build
 ```
+
+## Release
+
+The gem publishes to RubyGems.org as `verity-sdk`.
+
+1. Configure a pending RubyGems Trusted Publisher for `backworkai/verity-ruby`, workflow `release.yml`, environment `release`, gem name `verity-sdk`.
+2. Update `lib/verity/version.rb`.
+3. Push a matching tag, for example `v1.0.0`.
+4. The release workflow builds and pushes the gem through RubyGems OIDC trusted publishing.
 
 ## Support
 
