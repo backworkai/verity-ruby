@@ -7,7 +7,7 @@ module Verity
         @client = client
       end
 
-      def validate(procedure_codes:, payer: nil, plan_type: nil, line_of_business: nil, diagnosis_codes: nil, modifiers: nil, state: nil, site_of_service: nil, provider_specialty: nil, age_category: nil, sex_when_policy_relevant: nil, idempotency_key: nil)
+      def validate(procedure_codes:, payer: nil, plan_type: nil, line_of_business: nil, diagnosis_codes: nil, modifiers: nil, state: nil, date_of_service: nil, site_of_service: nil, provider_specialty: nil, age_category: nil, sex_when_policy_relevant: nil, idempotency_key: nil)
         validate_at_path(
           '/claims/validate',
           procedure_codes: procedure_codes,
@@ -17,6 +17,7 @@ module Verity
           diagnosis_codes: diagnosis_codes,
           modifiers: modifiers,
           state: state,
+          date_of_service: date_of_service,
           site_of_service: site_of_service,
           provider_specialty: provider_specialty,
           age_category: age_category,
@@ -25,7 +26,7 @@ module Verity
         )
       end
 
-      def validate_legacy(procedure_codes:, payer: nil, plan_type: nil, line_of_business: nil, diagnosis_codes: nil, modifiers: nil, state: nil, site_of_service: nil, provider_specialty: nil, age_category: nil, sex_when_policy_relevant: nil, idempotency_key: nil)
+      def validate_legacy(procedure_codes:, payer: nil, plan_type: nil, line_of_business: nil, diagnosis_codes: nil, modifiers: nil, state: nil, date_of_service: nil, site_of_service: nil, provider_specialty: nil, age_category: nil, sex_when_policy_relevant: nil, idempotency_key: nil)
         validate_at_path(
           '/claim-validation',
           procedure_codes: procedure_codes,
@@ -35,6 +36,7 @@ module Verity
           diagnosis_codes: diagnosis_codes,
           modifiers: modifiers,
           state: state,
+          date_of_service: date_of_service,
           site_of_service: site_of_service,
           provider_specialty: provider_specialty,
           age_category: age_category,
@@ -45,7 +47,7 @@ module Verity
 
       private
 
-      def validate_at_path(path, procedure_codes:, payer:, plan_type:, line_of_business:, diagnosis_codes:, modifiers:, state:, site_of_service:, provider_specialty:, age_category:, sex_when_policy_relevant:, idempotency_key:)
+      def validate_at_path(path, procedure_codes:, payer:, plan_type:, line_of_business:, diagnosis_codes:, modifiers:, state:, date_of_service:, site_of_service:, provider_specialty:, age_category:, sex_when_policy_relevant:, idempotency_key:)
         body = { procedure_codes: procedure_codes }
         body[:payer] = payer if payer
         body[:plan_type] = plan_type if plan_type
@@ -53,6 +55,7 @@ module Verity
         body[:diagnosis_codes] = diagnosis_codes if diagnosis_codes
         body[:modifiers] = modifiers if modifiers
         body[:state] = state if state
+        body[:date_of_service] = date_of_service if date_of_service
         body[:site_of_service] = site_of_service if site_of_service
         body[:provider_specialty] = provider_specialty if provider_specialty
         body[:age_category] = age_category if age_category
