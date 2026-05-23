@@ -88,10 +88,12 @@ claim = client.claims.validate(
   procedure_codes: ['99213'],
   diagnosis_codes: ['E11.9'],
   payer: 'Medicare',
-  state: 'TX'
+  state: 'TX',
+  date_of_service: '2026-05-23'
 )
 
 puts "#{claim['data']['coverage_status']} #{claim['data']['denial_risk']}"
+puts claim['data']['issues']
 ```
 
 ### Coverage, Spending, and Compliance
@@ -102,6 +104,7 @@ criteria = client.coverage.search_criteria(
   section: 'indications',
   limit: 10
 )
+puts "#{criteria['data'][0]['policy_id']}: #{criteria['data'][0]['policy_title']}"
 
 spending = client.spending.by_code(codes: ['T1019', 'T1020'], year: 2023)
 changes = client.compliance.unreviewed(limit: 10)
